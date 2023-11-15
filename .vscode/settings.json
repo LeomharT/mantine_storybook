@@ -1,6 +1,8 @@
 {
 	"editor.formatOnSave": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"typescript.referencesCodeLens.showOnAllFunctions": false,
+	"typescript.referencesCodeLens.enabled": true,
 	"editor.codeActionsOnSave": {
 		"source.organizeImports": true
 	},

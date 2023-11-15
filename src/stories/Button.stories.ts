@@ -2,6 +2,7 @@ import { Button, ButtonProps, ButtonVariant } from '@mantine/core';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
+	tags: ['autodocs'],
 	title: 'Example/Button',
 	component: Button,
 } satisfies Meta<typeof Button>;
@@ -20,7 +21,7 @@ export const Usage: Story = {
 	} satisfies ButtonProps,
 	argTypes: {
 		size: {
-			type: 'select',
+			control: 'select',
 			options: [
 				'xs',
 				'sm',
