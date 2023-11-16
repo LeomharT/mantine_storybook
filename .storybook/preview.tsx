@@ -65,8 +65,11 @@ const preview: Preview = {
 			defaultValue: 'light',
 			toolbar: {
 				title: 'Theme',
-				icon: 'sun',
-				items: ['light', 'dark'],
+				items: [
+					{ value: 'light', title: 'Light', icon: 'sun' },
+					{ value: 'dark', title: 'Dark', icon: 'moon' },
+				],
+
 				dynamicTitle: true,
 			},
 		},
