@@ -1,4 +1,4 @@
-import { Button, ButtonProps, ButtonVariant } from '@mantine/core';
+import { Button, ButtonVariant } from '@mantine/core';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
@@ -18,7 +18,7 @@ export const Usage: Story = {
 		size: 'md',
 		color: '#228be6',
 		fullWidth: false,
-	} satisfies ButtonProps,
+	},
 	argTypes: {
 		size: {
 			control: 'select',

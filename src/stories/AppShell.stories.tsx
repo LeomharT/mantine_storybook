@@ -5,11 +5,12 @@ import {
 	Group,
 	Skeleton,
 } from '@mantine/core';
-import { MantineLogo } from '@mantine/ds';
 import { useDisclosure } from '@mantine/hooks';
+import { MantineLogo } from '@mantinex/mantine-logo';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
+	tags: ['autodocs'],
 	title: 'Example/AppShell',
 	component: AppShell,
 } satisfies Meta<AppShellProps>;
@@ -19,7 +20,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Usage: Story = {
-	tags: ['autodocs'],
 	render() {
 		return <AppShellExample />;
 	},

@@ -4,7 +4,6 @@ import { addons } from '@storybook/preview-api';
 import type { Preview, StoryContext } from '@storybook/react';
 import React, { useEffect } from 'react';
 import { DARK_MODE_EVENT_NAME } from 'storybook-dark-mode';
-
 const channel = addons.getChannel();
 
 function ColorSchemeWrapper({
@@ -65,12 +64,25 @@ const preview: Preview = {
 			defaultValue: 'light',
 			toolbar: {
 				title: 'Theme',
-				items: [
-					{ value: 'light', title: 'Light', icon: 'sun' },
-					{ value: 'dark', title: 'Dark', icon: 'moon' },
-				],
-
+				icon: 'sun',
+				// Array of plain string values or MenuItem shape (see below)
+				items: ['light', 'dark'],
+				// Change title based on selected value
 				dynamicTitle: true,
+			},
+		},
+		locale: {
+			description: 'Internationalization locale',
+			defaultValue: 'en',
+			toolbar: {
+				icon: 'globe',
+				items: [
+					{ value: 'en', right: '🇺🇸', title: 'English' },
+					{ value: 'fr', right: '🇫🇷', title: 'Français' },
+					{ value: 'es', right: '🇪🇸', title: 'Español' },
+					{ value: 'zh', right: '🇨🇳', title: '中文' },
+					{ value: 'kr', right: '🇰🇷', title: '한국어' },
+				],
 			},
 		},
 	},
