@@ -2,8 +2,10 @@ import { MantineProvider, useMantineColorScheme } from '@mantine/core';
 import '@mantine/core/styles.css';
 import { addons } from '@storybook/preview-api';
 import type { Preview, StoryContext } from '@storybook/react';
+import { themes } from '@storybook/theming';
 import React, { useEffect } from 'react';
 import { DARK_MODE_EVENT_NAME } from 'storybook-dark-mode';
+
 const channel = addons.getChannel();
 
 function ColorSchemeWrapper({
@@ -57,20 +59,14 @@ const preview: Preview = {
 				date: /Date$/i,
 			},
 		},
+		darkMode: {
+			// Override the default dark theme
+			dark: { ...themes.dark },
+			// Override the default light theme
+			light: { ...themes.normal },
+		},
 	},
 	globalTypes: {
-		theme: {
-			description: 'Global theme for components',
-			defaultValue: 'light',
-			toolbar: {
-				title: 'Theme',
-				icon: 'sun',
-				// Array of plain string values or MenuItem shape (see below)
-				items: ['light', 'dark'],
-				// Change title based on selected value
-				dynamicTitle: true,
-			},
-		},
 		locale: {
 			description: 'Internationalization locale',
 			defaultValue: 'en',
