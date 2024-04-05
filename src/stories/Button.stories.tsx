@@ -122,4 +122,8 @@ export const Left_and_right_sections: Story = {
  */
 export const Polymorphic_component: Story = {
 	...Usage,
+	args: {
+		...Usage.args,
+		component: 'button',
+	},
 };
