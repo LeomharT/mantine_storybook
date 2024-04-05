@@ -1,16 +1,15 @@
 import { MantineProvider, useMantineColorScheme } from '@mantine/core';
 import '@mantine/core/styles.css';
+import { DocsContainer as BaseContainer } from '@storybook/blocks';
 import { addons } from '@storybook/preview-api';
 import type { Preview, StoryContext } from '@storybook/react';
 import { themes } from '@storybook/theming';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DARK_MODE_EVENT_NAME } from 'storybook-dark-mode';
-
 const channel = addons.getChannel();
 
 function ColorSchemeWrapper({
 	children,
-	context,
 }: {
 	children: React.ReactNode;
 	context: StoryContext;
@@ -27,24 +26,43 @@ function ColorSchemeWrapper({
 		return () => channel.off(DARK_MODE_EVENT_NAME, handleColorScheme);
 	}, [channel]);
 
-	useEffect(() => {
-		channel.emit(DARK_MODE_EVENT_NAME, context.globals.theme === 'dark');
-	}, [context.globals.theme]);
-
 	return children;
 }
 
+function DocsContainer({ children, context }) {
+	const [dark, setDark] = useState(false);
+
+	const handleColorScheme = (value: boolean) => {
+		setDark(value);
+	};
+
+	useEffect(() => {
+		channel.on(DARK_MODE_EVENT_NAME, handleColorScheme);
+
+		return () => channel.off(DARK_MODE_EVENT_NAME, handleColorScheme);
+	}, [channel]);
+
+	return (
+		<BaseContainer
+			context={context}
+			theme={dark ? themes.dark : themes.light}
+		>
+			{children}
+		</BaseContainer>
+	);
+}
+
 const decorators = [
-	(renderStory: any, context: StoryContext) => (
+	(Story: any, context: StoryContext) => (
 		<ColorSchemeWrapper context={context}>
-			{renderStory()}
+			<Story />
 		</ColorSchemeWrapper>
 	),
-	(renderStory: any, context: StoryContext) => (
+	(Story: any, context: StoryContext) => (
 		<MantineProvider
 			defaultColorScheme={context.globals.theme as 'light' | 'dark'}
 		>
-			{renderStory()}
+			<Story />
 		</MantineProvider>
 	),
 ];
@@ -64,6 +82,9 @@ const preview: Preview = {
 			dark: { ...themes.dark },
 			// Override the default light theme
 			light: { ...themes.normal },
+		},
+		docs: {
+			container: DocsContainer,
 		},
 	},
 	globalTypes: {
