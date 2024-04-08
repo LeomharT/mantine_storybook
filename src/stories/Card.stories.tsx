@@ -186,7 +186,7 @@ export const Card_Section: Story = {
 	render(props) {
 		return (
 			<Stack>
-				<Card padding='xl'>
+				<Card padding='xl' {...props}>
 					{/* top, right, left margins are negative – -1 * theme.spacing.xl */}
 					<Card.Section>First section</Card.Section>
 					{/* Content that is not inside Card.Section will have theme.spacing.xl spacing on all sides relative to Card */}
@@ -197,7 +197,7 @@ export const Card_Section: Story = {
 					<Card.Section>Last section</Card.Section>
 				</Card>
 				<Divider />
-				<Card padding='xl'>
+				<Card padding='xl' {...props}>
 					<div>
 						<Card.Section>Won't work</Card.Section>
 					</div>
@@ -215,7 +215,7 @@ export const Card_Section: Story = {
  * - `withBorder` prop adds top and bottom border to `Card.Section` depending on its position relative to other content and sections
  * - `inheritPadding` prop adds the same left and right padding to `Card.Section` as set in Card component
  */
-export const withBorder_and_inheritPadding_props: Story = {
+export const WithBorder_and_inheritPadding_props: Story = {
 	...Usage,
 	render(props) {
 		const images = [
