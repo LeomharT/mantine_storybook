@@ -27,6 +27,8 @@ export const Usage: Story = {
 	argTypes: {
 		size: {
 			control: 'select',
+			type: 'MantineSize | (string & {}) | "compact-xs" | "compact-sm" | "compact-md" | "compact-lg" | "compact-xl"',
+			description: `Controls button height, font-size and horizontal padding, 'sm' by default`,
 			options: [
 				'xs',
 				'sm',
@@ -54,6 +56,9 @@ export const Usage: Story = {
 		},
 		radius: {
 			control: 'select',
+			type: 'MantineRadius | number',
+			description:
+				'Key of `theme.radius` or any valid CSS value to set `border-radius`, `theme.defaultRadius` by default',
 			options: ['xs', 'sm', 'md', 'lg', 'xl'],
 		},
 	},

@@ -186,7 +186,7 @@ export const Card_Section: Story = {
 	render(props) {
 		return (
 			<Stack>
-				<Card padding='xl' {...props}>
+				<Card padding='xl' {...props} shadow='none'>
 					{/* top, right, left margins are negative – -1 * theme.spacing.xl */}
 					<Card.Section>First section</Card.Section>
 					{/* Content that is not inside Card.Section will have theme.spacing.xl spacing on all sides relative to Card */}
@@ -197,7 +197,7 @@ export const Card_Section: Story = {
 					<Card.Section>Last section</Card.Section>
 				</Card>
 				<Divider />
-				<Card padding='xl' {...props}>
+				<Card padding='xl' {...props} shadow='none'>
 					<div>
 						<Card.Section>Won't work</Card.Section>
 					</div>
@@ -295,7 +295,7 @@ export const WithBorder_and_inheritPadding_props: Story = {
 				<Text mt='sm' c='dimmed' size='sm'>
 					<Text span inherit c='var(--mantine-color-anchor)'>
 						200+ images uploaded
-					</Text>{' '}
+					</Text>
 					since last visit, review them to select which one should be
 					added to your gallery
 				</Text>

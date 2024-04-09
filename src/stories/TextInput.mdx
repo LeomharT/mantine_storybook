@@ -1,10 +1,35 @@
-import { Canvas, Meta, Title, Source } from '@storybook/blocks';
+import { Canvas, Meta, Stories, Title, Source } from '@storybook/blocks';
 import * as TextInputStories from './TextInput.stories';
 
 <Meta of={TextInputStories} />
 
-# TextInput
+<Title>TextInput</Title>
 
 Base component to create custom inputs
 
 <Canvas of={TextInputStories.Usage} />
+
+### Disclaimer
+
+**!important**: In most cases, you should not use Input in your application.
+Input is a base for other inputs and was not designed to be used directly.
+Use Input to create custom inputs, for other cases prefer TextInput or other component.
+
+```js
+import { Input, TextInput } from '@mantine/core';
+
+// Incorrect usage, input is not accessible
+function Incorrect() {
+	return (
+		<Input.Wrapper label='Input label'>
+			<Input />
+		</Input.Wrapper>
+	);
+}
+
+// Use TextInput instead of Input everywhere you want to use Input,
+// it is accessible by default and includes Input.Wrapper
+function Correct() {
+	return <TextInput label='Input label' description='Input description' />;
+}
+```
