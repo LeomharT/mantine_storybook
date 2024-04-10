@@ -1,4 +1,11 @@
-import { Canvas, Meta, Stories, Title, Source } from '@storybook/blocks';
+import {
+	Canvas,
+	Meta,
+	Stories,
+	Title,
+	Source,
+	Controls,
+} from '@storybook/blocks';
 import * as TextInputStories from './TextInput.stories';
 
 <Meta of={TextInputStories} />
@@ -8,6 +15,8 @@ import * as TextInputStories from './TextInput.stories';
 Base component to create custom inputs
 
 <Canvas of={TextInputStories.Usage} />
+
+<Controls of={TextInputStories.Usage} />
 
 ### Disclaimer
 
@@ -33,3 +42,5 @@ function Correct() {
 	return <TextInput label='Input label' description='Input description' />;
 }
 ```
+
+<Stories />
