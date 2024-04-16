@@ -1,10 +1,10 @@
 import {
-	Canvas,
-	Meta,
-	Stories,
-	Title,
-	Source,
-	Controls,
+  Canvas,
+  Meta,
+  Stories,
+  Title,
+  Source,
+  Controls,
 } from '@storybook/blocks';
 import * as TextInputStories from './TextInput.stories';
 
@@ -18,29 +18,68 @@ Base component to create custom inputs
 
 <Controls of={TextInputStories.Usage} />
 
-### Disclaimer
+<Stories />
 
-**!important**: In most cases, you should not use Input in your application.
-Input is a base for other inputs and was not designed to be used directly.
-Use Input to create custom inputs, for other cases prefer TextInput or other component.
+### Controlled
 
 ```js
-import { Input, TextInput } from '@mantine/core';
+import { useState } from 'react';
+import { TextInput } from '@mantine/core';
 
-// Incorrect usage, input is not accessible
-function Incorrect() {
-	return (
-		<Input.Wrapper label='Input label'>
-			<Input />
-		</Input.Wrapper>
-	);
-}
-
-// Use TextInput instead of Input everywhere you want to use Input,
-// it is accessible by default and includes Input.Wrapper
-function Correct() {
-	return <TextInput label='Input label' description='Input description' />;
+function Demo() {
+  const [value, setValue] = useState('');
+  return (
+    <TextInput
+      value={value}
+      onChange={(event) => setValue(event.currentTarget.value)}
+    />
+  );
 }
 ```
 
-<Stories />
+### Get element ref
+
+```js
+import { useRef } from 'react';
+import { TextInput } from '@mantine/core';
+
+function Demo() {
+  const ref = useRef < HTMLInputElement > null;
+  return <TextInput ref={ref} />;
+}
+```
+
+### Accessibility
+
+If `TextInput` is used without `label` prop, it will not be announced properly by screen reader:
+
+```js
+import { TextInput } from '@mantine/core';
+
+// Inaccessible input – screen reader will not announce it properly
+function Demo() {
+  return <TextInput />;
+}
+```
+
+Set `aria-label` to make the input accessible. In this case label will not be visible, but screen reader will announce it:
+
+```js
+import { TextInput } from '@mantine/core';
+
+// Accessible input – it has aria-label
+function Demo() {
+  return <TextInput aria-label='My input' />;
+}
+```
+
+If `label` prop is set, input will be accessible it is not required to set aria-label:
+
+```js
+import { TextInput } from '@mantine/core';
+
+// Accessible input – it has associated label element
+function Demo() {
+  return <TextInput label='My input' />;
+}
+```
