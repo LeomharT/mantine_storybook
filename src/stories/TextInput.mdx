@@ -1,10 +1,11 @@
 import {
-  Canvas,
-  Meta,
-  Stories,
-  Title,
-  Source,
-  Controls,
+	Canvas,
+	Meta,
+	Stories,
+	Title,
+	Source,
+	Controls,
+	Story,
 } from '@storybook/blocks';
 import * as TextInputStories from './TextInput.stories';
 
@@ -14,7 +15,7 @@ import * as TextInputStories from './TextInput.stories';
 
 Base component to create custom inputs
 
-<Canvas of={TextInputStories.Usage} />
+<Canvas withToolbar of={TextInputStories.Usage} />
 
 <Controls of={TextInputStories.Usage} />
 
@@ -27,13 +28,13 @@ import { useState } from 'react';
 import { TextInput } from '@mantine/core';
 
 function Demo() {
-  const [value, setValue] = useState('');
-  return (
-    <TextInput
-      value={value}
-      onChange={(event) => setValue(event.currentTarget.value)}
-    />
-  );
+	const [value, setValue] = useState('');
+	return (
+		<TextInput
+			value={value}
+			onChange={(event) => setValue(event.currentTarget.value)}
+		/>
+	);
 }
 ```
 
@@ -44,8 +45,8 @@ import { useRef } from 'react';
 import { TextInput } from '@mantine/core';
 
 function Demo() {
-  const ref = useRef < HTMLInputElement > null;
-  return <TextInput ref={ref} />;
+	const ref = useRef < HTMLInputElement > null;
+	return <TextInput ref={ref} />;
 }
 ```
 
@@ -58,7 +59,7 @@ import { TextInput } from '@mantine/core';
 
 // Inaccessible input – screen reader will not announce it properly
 function Demo() {
-  return <TextInput />;
+	return <TextInput />;
 }
 ```
 
@@ -69,7 +70,7 @@ import { TextInput } from '@mantine/core';
 
 // Accessible input – it has aria-label
 function Demo() {
-  return <TextInput aria-label='My input' />;
+	return <TextInput aria-label='My input' />;
 }
 ```
 
@@ -80,6 +81,6 @@ import { TextInput } from '@mantine/core';
 
 // Accessible input – it has associated label element
 function Demo() {
-  return <TextInput label='My input' />;
+	return <TextInput label='My input' />;
 }
 ```
