@@ -1,0 +1,74 @@
+import {
+	Canvas,
+	Meta,
+	Stories,
+	Title,
+	Source,
+	Controls,
+	Story,
+} from '@storybook/blocks';
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+
+<Title>Button</Title>
+
+Button component to render button or link
+
+<Canvas of={ButtonStories.Usage} withToolbar />
+
+<Controls of={ButtonStories.Usage} />
+
+<Stories />
+
+### Polymorphic component
+
+`Button` is a polymorphic component – its default root element is `button`, but it can be changed to any other element or component with `component` prop:
+
+```js
+import { Button } from '@mantine/core';
+
+function Demo() {
+	return <Button component='a' />;
+}
+```
+
+You can also use components in component prop, for example, Next.js Link:
+
+```js
+import Link from 'next/link';
+import { Button } from '@mantine/core';
+
+function Demo() {
+	return <Button component={Link} href='/' />;
+}
+```
+
+> ### Polymorphic components with TypeScript
+>
+> Note that polymorphic components props types are different from regular components – they do not extend
+> HTML element props of the default element. For example, `ButtonProps` does not extend
+> React.ComponentPropsWithoutRef `div` although button is the default element.
+>
+> If you want to create a wrapper for a polymorphic component that is not polymorphic (does not support component prop), then your component props interface should extend HTML element props, for example:
+
+```js
+import type { ButtonProps, ElementProps } from '@mantine/core';
+
+interface MyButtonProps extends ButtonProps,
+  ElementProps<'a', keyof ButtonProps> {}
+```
+
+> If you want your component to remain polymorphic after wrapping, use createPolymorphicComponent function described in this guide.
+
+### Get element ref
+
+```js
+import { useRef } from 'react';
+import { Button } from '@mantine/core';
+
+function Demo() {
+	const ref = useRef < HTMLButtonElement > null;
+	return <Button ref={ref} />;
+}
+```
